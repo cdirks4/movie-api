@@ -2,14 +2,10 @@ import React from 'react';
 import Sidebar from './components/Sidebar';
 import Movies from './components/Movies';
 import './index.css';
+import { Route, Link } from 'react-router-dom';
+import MovieDetails from './components/MovieDetails';
 
 const App = () => {
-	const apiKey = process.env.REACT_APP_API_KEY;
-	{
-		fetch(`https://api.themoviedb.org/3/movie/550?api_key=${apiKey}`)
-			.then((res) => res.json())
-			.then((res) => console.log(res));
-	}
 	return (
 		<div
 			className='grid'
@@ -26,7 +22,17 @@ const App = () => {
 				</h1>
 			</header>
 			<Sidebar />
-			<Movies />
+			<Route
+				path='/movies/:category'
+				render={(routerProps) => <Movies match={routerProps.match.params} />}
+			/>
+			<Route
+				exact
+				path='/:id'
+				render={(routerProps) => (
+					<MovieDetails match={routerProps.match.params} />
+				)}
+			/>
 		</div>
 	);
 };
