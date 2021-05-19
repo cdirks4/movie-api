@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Sidebar from './components/Sidebar';
+import Movies from './components/Movies';
+import './index.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+	const apiKey = process.env.REACT_APP_API_KEY;
+	{
+		fetch(`https://api.themoviedb.org/3/movie/550?api_key=${apiKey}`)
+			.then((res) => res.json())
+			.then((res) => console.log(res));
+	}
+	return (
+		<div
+			className='grid'
+			style={{
+				height: '100vh',
+				width: '100vw',
+				display: 'grid',
+				gridTemplateColumns: '6fr 8fr 8fr 8fr',
+				gridTemplateRows: '6fr 8fr 10fr 10fr',
+			}}>
+			<header style={{ gridColumn: '2/ span3', textAlign: 'center' }}>
+				<h1>
+					<a href='/'>Placeholder</a>
+				</h1>
+			</header>
+			<Sidebar />
+			<Movies />
+		</div>
+	);
+};
 
 export default App;
