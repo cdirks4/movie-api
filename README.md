@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# Project Description
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A site for you to research your favorite movies and what to watch next!
 
-## Available Scripts
+##Data response from my API
+https://www.themoviedb.org/settings/api
+![Screen Shot 2021-05-19 at 11 20 34 AM](https://media.git.generalassemb.ly/user/35112/files/2b89fa00-b896-11eb-83fd-ad4c97ac9d02)
 
-In the project directory, you can run:
+## Wire Frames
 
-### `npm start`
+![Screen Shot 2021-05-19 at 11 30 32 AM](https://media.git.generalassemb.ly/user/35112/files/dea62380-b895-11eb-9a08-f1c203ba65f8)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![Screen Shot 2021-05-19 at 12 11 39 PM](https://media.git.generalassemb.ly/user/35112/files/78240400-b89b-11eb-857c-578df8f91872)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## App components
 
-### `npm test`
+![Screen Shot 2021-05-19 at 11 48 56 AM](https://media.git.generalassemb.ly/user/35112/files/4198ba00-b898-11eb-811b-a33e919d0cd4)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+I think I will end up with at least one or two more just unsure at the moment.
 
-### `npm run build`
+## User Stories
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- as a user Id like to find new popular Movies
+- as a user Id like to find movies in the same genre
+- as a user Id like a well organized site where I wont have difficulties navigating it
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### MVP Goals
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Able to display movies and titles
+- Able to pull details on a specific movie cast description etc
 
-### `npm run eject`
+### Stretch Goals
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Bronze:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- search bar
+- clickable category links in side bar
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+  Silver:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- bundling movies by category
+- improving style to be more dynamic maybe an animation when a cover shows up or slide show of movies on front page
+- giving producers a page with movies they have produced
 
-## Learn More
+  Gold:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- try pulling trailers from youtube api
