@@ -3,10 +3,11 @@ import React, { useState, useEffect } from 'react';
 const Movies = () => {
 	const [movies, setMovies] = useState(0);
 	const apiKey = process.env.REACT_APP_API_KEY;
+	let category = 'popular';
 	useEffect(() => {
 		{
 			fetch(
-				`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`
+				` https://api.themoviedb.org/3/movie/${category}?api_key=${apiKey}&language=en-US&page=1`
 			)
 				.then((res) => res.json())
 				.then((res) => setMovies(res));
@@ -16,7 +17,10 @@ const Movies = () => {
 		return null;
 	}
 	return (
-		<div style={{ gridColumn: '2/ span 4' }}>
+		<div
+			style={{
+				gridColumn: '2/ span 4',
+			}}>
 			{movies.results.map((movie) => {
 				return (
 					<img
@@ -24,7 +28,7 @@ const Movies = () => {
 						style={{
 							borderRadius: '5%',
 							height: '300px',
-							gridColumn: '2/ span 4',
+							gridColumn: '1/ span 2',
 						}}
 						src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
 					/>
