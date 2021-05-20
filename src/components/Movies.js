@@ -2,20 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 const Movies = (match) => {
 	const [movies, setMovies] = useState(0);
+	const [page, setPage] = useState(1);
 	const apiKey = process.env.REACT_APP_API_KEY;
 	useEffect(() => {
 		{
 			fetch(
-				` https://api.themoviedb.org/3/movie/${match.match.category}?api_key=${apiKey}&language=en-US&page=1`
+				` https://api.themoviedb.org/3/movie/${match.match.category}?api_key=${apiKey}&language=en-US&page=${page}`
 			)
 				.then((res) => res.json())
 				.then((res) => setMovies(res));
 		}
-	}, [match.match.category]);
+	}, [page, match.match.category]);
 	if (!movies) {
 		return null;
 	}
-
+	if (!page || page > movies.total_pages) {
+		setPage(1);
+	}
 	return (
 		<div
 			style={{
@@ -36,6 +39,11 @@ const Movies = (match) => {
 					</Link>
 				);
 			})}
+			<button onClick={() => setPage(page - 1)}>Previous Page</button>
+			<button onClick={() => setPage(page + 1)}>Next Page</button>
+			<h2>
+				Page:{page} of {movies.total_pages}
+			</h2>
 		</div>
 	);
 };

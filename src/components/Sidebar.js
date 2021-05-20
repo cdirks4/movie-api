@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import MovieDetails from './MovieDetails';
+import Movies from './Movies';
 
 const Sidebar = () => {
 	const [category, setCategory] = useState(0);
+	const [genre, setGenre] = useState(0);
+	const [submit, setSubmit] = useState(false);
+	console.log(genre);
 	return (
 		<div
 			className='sidebar'
@@ -20,6 +25,28 @@ const Sidebar = () => {
 					<li id='now_playing'>Now Playing!</li>
 				</Link>
 			</ul>
+			<form
+				onSubmit={(e) => {
+					e.preventDefault();
+					setSubmit(true);
+				}}>
+				<select
+					name='select'
+					id='select'
+					value={genre}
+					onChange={(event) => setGenre(event.target.value)}>
+					<option value='' default>
+						Select Genre
+					</option>
+					<option value='mon'>Monday</option>
+					<option value='wed'>Tuesday</option>
+					<option value='wed'>Wednesday</option>
+					<option value='thur'>Thurday</option>
+					<option value='fri'>Friday</option>
+				</select>
+				<button type='submit'>GO</button>
+			</form>
+			{submit && <Movies />}
 		</div>
 	);
 };
