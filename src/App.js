@@ -5,6 +5,7 @@ import './index.css';
 import { Route, Link } from 'react-router-dom';
 import MovieDetails from './components/MovieDetails';
 import MovieGenre from './components/MovieGenre';
+import MovieSearch from './components/MovieSearch';
 // const params = [
 // 	{
 // 		genre: '',
@@ -62,6 +63,7 @@ const App = () => {
 					/>
 				)}
 			/>
+			{/* <MovieSearch movie={movie} setMovie={setMovie} /> */}
 		</div>
 	);
 };
