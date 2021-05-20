@@ -4,13 +4,23 @@ import MovieDetails from './MovieDetails';
 import MovieGenre from './MovieGenre';
 import Movies from './Movies';
 
-const Sidebar = ({ movie, setMovie, genre, setGenre }) => {
+const Sidebar = ({
+	movie,
+	setMovie,
+	genre,
+	setGenre,
+	setSearchbox,
+	searchbox,
+}) => {
 	const [category, setCategory] = useState(0);
-
 	const [submit, setSubmit] = useState(false);
 	const apiKey = process.env.REACT_APP_API_KEY;
 	const handleSubmit = (e) => {
 		e.preventDefault();
+	};
+
+	const handleChange = (e) => {
+		setSearchbox(e.target.value);
 	};
 	// useEffect(() => {
 	// 	fetch(
@@ -25,6 +35,8 @@ const Sidebar = ({ movie, setMovie, genre, setGenre }) => {
 			className='sidebar'
 			style={{ border: ' 2px solid black', gridRow: ' 1/ span 4' }}>
 			<input
+				onChange={handleChange}
+				id='searchbox'
 				style={{ width: '100%', height: '30px', marginTop: '5px' }}></input>
 			<ul onClick={(e) => setCategory(e.target.id)}>
 				<Link to='/movies/popular'>
