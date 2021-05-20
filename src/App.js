@@ -16,6 +16,7 @@ const App = () => {
 	const [genre, setGenre] = useState('');
 	// const [parameters, setParameters] = useState(params);
 	const [movie, setMovie] = useState(0);
+	const [searchbox, setSearchbox] = useState('');
 	return (
 		<div
 			className='grid'
@@ -34,8 +35,8 @@ const App = () => {
 			<Sidebar
 				movie={movie}
 				setMovie={setMovie}
-				// parameters={parameters}
-				// setParameters={setParameters}
+				setSearchbox={setSearchbox}
+				searchbox={searchbox}
 				genre={genre}
 				setGenre={setGenre}
 			/>
@@ -46,6 +47,7 @@ const App = () => {
 						genre={genre}
 						movie={movie}
 						setMovie={setMovie}
+						searchbox={searchbox}
 						// paramaters={parameters}
 						// setParameters={setParameters}
 						match={routerProps.match.params}
@@ -63,7 +65,7 @@ const App = () => {
 					/>
 				)}
 			/>
-			{/* <MovieSearch movie={movie} setMovie={setMovie} /> */}
+			<MovieSearch movie={movie} setMovie={setMovie} searchbox={searchbox} />
 		</div>
 	);
 };

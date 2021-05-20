@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-const Movies = ({ genre, match, movie, setMovie }) => {
+const Movies = ({ genre, match, movie, setMovie, searchbox }) => {
 	const [page, setPage] = useState(1);
 	const apiKey = process.env.REACT_APP_API_KEY;
 	useEffect(() => {
@@ -11,8 +11,8 @@ const Movies = ({ genre, match, movie, setMovie }) => {
 				.then((res) => res.json())
 				.then((res) => setMovie(res));
 		}
-	}, [page, match.category, genre]);
-	if (!movie) {
+	}, [page, match.category, genre, searchbox]);
+	if (!movie.results) {
 		return null;
 	}
 	if (!page || page > movie.total_pages) {
