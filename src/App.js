@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import Movies from './components/Movies';
 import './index.css';
 import { Route, Link } from 'react-router-dom';
 import MovieDetails from './components/MovieDetails';
-
+import MovieGenre from './components/MovieGenre';
+// const params = [
+// 	{
+// 		genre: '',
+// 		category: '',
+// 	},
+// ];
 const App = () => {
+	const [genre, setGenre] = useState(0);
+	// const [parameters, setParameters] = useState(params);
+	const [movie, setMovie] = useState(0);
 	return (
 		<div
 			className='grid'
@@ -21,16 +30,35 @@ const App = () => {
 					<a href='/'>Placeholder</a>
 				</h1>
 			</header>
-			<Sidebar />
+			<Sidebar
+				movie={movie}
+				setMovie={setMovie}
+				// parameters={parameters}
+				// setParameters={setParameters}
+				genre={genre}
+				setGenre={setGenre}
+			/>
 			<Route
 				path='/movies/:category'
-				render={(routerProps) => <Movies match={routerProps.match.params} />}
+				render={(routerProps) => (
+					<Movies
+						movie={movie}
+						setMovie={setMovie}
+						// paramaters={parameters}
+						// setParameters={setParameters}
+						match={routerProps.match.params}
+					/>
+				)}
 			/>
 			<Route
 				exact
 				path='/:id'
 				render={(routerProps) => (
-					<MovieDetails match={routerProps.match.params} />
+					<MovieDetails
+						match={routerProps.match.params}
+						movie={movie}
+						setMovie={setMovie}
+					/>
 				)}
 			/>
 		</div>

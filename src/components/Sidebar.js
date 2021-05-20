@@ -1,13 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import MovieDetails from './MovieDetails';
+import MovieGenre from './MovieGenre';
 import Movies from './Movies';
 
-const Sidebar = () => {
+const Sidebar = ({ movie, setMovie }) => {
 	const [category, setCategory] = useState(0);
 	const [genre, setGenre] = useState(0);
 	const [submit, setSubmit] = useState(false);
-	console.log(genre);
+	const apiKey = process.env.REACT_APP_API_KEY;
+	const handleSubmit = (e) => {
+		e.preventDefault();
+	};
+	// useEffect(() => {
+	// 	fetch(
+	// 		`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&page=1&with_genres=${genre}&with_watch_monetization_types=flatrate `
+	// 	)
+	// 		.then((res) => res.json())
+	// 		.then((res) => setMovie(res));
+	// }, [genre]);
+
 	return (
 		<div
 			className='sidebar'
@@ -25,28 +37,22 @@ const Sidebar = () => {
 					<li id='now_playing'>Now Playing!</li>
 				</Link>
 			</ul>
-			<form
-				onSubmit={(e) => {
-					e.preventDefault();
-					setSubmit(true);
-				}}>
+			<form onSubmit={handleSubmit}>
 				<select
 					name='select'
 					id='select'
-					value={genre}
-					onChange={(event) => setGenre(event.target.value)}>
+					onChange={(e) => setGenre(e.target.value)}>
 					<option value='' default>
 						Select Genre
 					</option>
-					<option value='mon'>Monday</option>
-					<option value='wed'>Tuesday</option>
-					<option value='wed'>Wednesday</option>
-					<option value='thur'>Thurday</option>
-					<option value='fri'>Friday</option>
+					<option value='28'>Action</option>
+					<option value='12'>Adventure</option>
+					<option value='16'>Animation</option>
+					<option value='35'>Comedy</option>
+					<option value='80'>Crime</option>
 				</select>
 				<button type='submit'>GO</button>
 			</form>
-			{submit && <Movies />}
 		</div>
 	);
 };
