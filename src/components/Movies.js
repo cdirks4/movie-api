@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-const Movies = ({ match, movie, setMovie }) => {
+const Movies = ({ genre, match, movie, setMovie }) => {
 	const [page, setPage] = useState(1);
 	const apiKey = process.env.REACT_APP_API_KEY;
-
 	useEffect(() => {
 		{
 			fetch(
-				` https://api.themoviedb.org/3/movie/${match.category}?api_key=${apiKey}&language=en-US&page=${page}`
+				` https://api.themoviedb.org/3/movie/${match.category}?api_key=${apiKey}&language=en-US&page=${page}&with_genres=${genre}`
 			)
 				.then((res) => res.json())
 				.then((res) => setMovie(res));
 		}
-	}, [page, match.category]);
+	}, [page, match.category, genre]);
 	if (!movie) {
 		return null;
 	}

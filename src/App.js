@@ -12,7 +12,7 @@ import MovieGenre from './components/MovieGenre';
 // 	},
 // ];
 const App = () => {
-	const [genre, setGenre] = useState(0);
+	const [genre, setGenre] = useState('');
 	// const [parameters, setParameters] = useState(params);
 	const [movie, setMovie] = useState(0);
 	return (
@@ -42,6 +42,7 @@ const App = () => {
 				path='/movies/:category'
 				render={(routerProps) => (
 					<Movies
+						genre={genre}
 						movie={movie}
 						setMovie={setMovie}
 						// paramaters={parameters}

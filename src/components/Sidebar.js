@@ -4,9 +4,9 @@ import MovieDetails from './MovieDetails';
 import MovieGenre from './MovieGenre';
 import Movies from './Movies';
 
-const Sidebar = ({ movie, setMovie }) => {
+const Sidebar = ({ movie, setMovie, genre, setGenre }) => {
 	const [category, setCategory] = useState(0);
-	const [genre, setGenre] = useState(0);
+
 	const [submit, setSubmit] = useState(false);
 	const apiKey = process.env.REACT_APP_API_KEY;
 	const handleSubmit = (e) => {
@@ -37,22 +37,20 @@ const Sidebar = ({ movie, setMovie }) => {
 					<li id='now_playing'>Now Playing!</li>
 				</Link>
 			</ul>
-			<form onSubmit={handleSubmit}>
-				<select
-					name='select'
-					id='select'
-					onChange={(e) => setGenre(e.target.value)}>
-					<option value='' default>
-						Select Genre
-					</option>
-					<option value='28'>Action</option>
-					<option value='12'>Adventure</option>
-					<option value='16'>Animation</option>
-					<option value='35'>Comedy</option>
-					<option value='80'>Crime</option>
-				</select>
-				<button type='submit'>GO</button>
-			</form>
+
+			<select
+				name='select'
+				id='select'
+				onChange={(e) => setGenre(e.target.value)}>
+				<option value='' default>
+					Select Genre
+				</option>
+				<option value='28'>Action</option>
+				<option value='12'>Adventure</option>
+				<option value='16'>Animation</option>
+				<option value='35'>Comedy</option>
+				<option value='80'>Crime</option>
+			</select>
 		</div>
 	);
 };
