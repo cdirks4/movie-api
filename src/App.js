@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import Movies from './components/Movies';
 import './index.css';
-
+import { Route, Link } from 'react-router-dom';
+import MovieDetails from './components/MovieDetails';
+import MovieGenre from './components/MovieGenre';
+import MovieSearch from './components/MovieSearch';
+// const params = [
+// 	{
+// 		genre: '',
+// 		category: '',
+// 	},
+// ];
 const App = () => {
-	const apiKey = process.env.REACT_APP_API_KEY;
-	{
-		fetch(`https://api.themoviedb.org/3/movie/550?api_key=${apiKey}`)
-			.then((res) => res.json())
-			.then((res) => console.log(res));
-	}
+	const [genre, setGenre] = useState('');
+	// const [parameters, setParameters] = useState(params);
+	const [movie, setMovie] = useState(0);
 	return (
 		<div
 			className='grid'
@@ -25,8 +31,39 @@ const App = () => {
 					<a href='/'>Placeholder</a>
 				</h1>
 			</header>
-			<Sidebar />
-			<Movies />
+			<Sidebar
+				movie={movie}
+				setMovie={setMovie}
+				// parameters={parameters}
+				// setParameters={setParameters}
+				genre={genre}
+				setGenre={setGenre}
+			/>
+			<Route
+				path='/movies/:category'
+				render={(routerProps) => (
+					<Movies
+						genre={genre}
+						movie={movie}
+						setMovie={setMovie}
+						// paramaters={parameters}
+						// setParameters={setParameters}
+						match={routerProps.match.params}
+					/>
+				)}
+			/>
+			<Route
+				exact
+				path='/:id'
+				render={(routerProps) => (
+					<MovieDetails
+						match={routerProps.match.params}
+						movie={movie}
+						setMovie={setMovie}
+					/>
+				)}
+			/>
+			{/* <MovieSearch movie={movie} setMovie={setMovie} /> */}
 		</div>
 	);
 };
