@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import MovieDetails from './MovieDetails';
 import MovieGenre from './MovieGenre';
 import Movies from './Movies';
-
+import * as _ from 'underscore';
 const Sidebar = ({
 	movie,
 	setMovie,
@@ -19,8 +19,11 @@ const Sidebar = ({
 		e.preventDefault();
 	};
 
-	const handleChange = (e) => {
-		setSearchbox(e.target.value);
+	const throttleChange = (e) => {
+		const handleChange = () => {
+			setSearchbox(e.target.value);
+		};
+		_.throttle(setTimeout(setSearchbox(e.target.value), 500), 500);
 	};
 	// useEffect(() => {
 	// 	fetch(
@@ -35,7 +38,7 @@ const Sidebar = ({
 			className='sidebar'
 			style={{ border: ' 2px solid black', gridRow: ' 1/ span 4' }}>
 			<input
-				onChange={handleChange}
+				onChange={throttleChange}
 				id='searchbox'
 				style={{ width: '100%', height: '30px', marginTop: '5px' }}></input>
 			<ul onClick={(e) => setCategory(e.target.id)}>

@@ -6,6 +6,8 @@ import { Route, Link } from 'react-router-dom';
 import MovieDetails from './components/MovieDetails';
 import MovieGenre from './components/MovieGenre';
 import MovieSearch from './components/MovieSearch';
+import { useThrottle } from '@react-hook/throttle';
+
 // const params = [
 // 	{
 // 		genre: '',
@@ -16,7 +18,7 @@ const App = () => {
 	const [genre, setGenre] = useState('');
 	// const [parameters, setParameters] = useState(params);
 	const [movie, setMovie] = useState(0);
-	const [searchbox, setSearchbox] = useState('');
+	const [searchbox, setSearchbox] = useThrottle('');
 	return (
 		<div
 			className='grid'
