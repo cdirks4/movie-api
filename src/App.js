@@ -6,17 +6,55 @@ import { Route, Link } from 'react-router-dom';
 import MovieDetails from './components/MovieDetails';
 import MovieGenre from './components/MovieGenre';
 import MovieSearch from './components/MovieSearch';
+import { useThrottle } from '@react-hook/throttle';
+
+import * as FiIcons from 'react-icons/fi';
+import * as GiIcons from 'react-icons/gi';
+import * as FaIcons from 'react-icons/fa';
+import * as AiIcons from 'react-icons/ai';
+
 // const params = [
 // 	{
 // 		genre: '',
 // 		category: '',
 // 	},
 // ];
+const initialData = [
+	{
+		title: 'Home',
+		path: '/',
+		icon: <AiIcons.AiFillHome />,
+		cName: 'nav-text',
+		id: 'home',
+	},
+	{
+		title: 'Popular',
+		path: '/movies/popular',
+		icon: <FiIcons.FiTrendingUp style={{ color: 'green' }} />,
+		cName: 'nav-text',
+		id: 'popular',
+	},
+	{
+		title: 'Top rated',
+		path: '/movies/top_rated',
+		icon: <GiIcons.GiTrophyCup style={{ color: 'gold' }} />,
+		cName: 'nav-text',
+		id: 'top_rated',
+	},
+	{
+		title: 'Now playing',
+		path: '/movies/now_playing',
+		icon: <FaIcons.FaRegStar />,
+		cName: 'nav-text',
+		id: 'now_playing',
+	},
+];
 const App = () => {
 	const [genre, setGenre] = useState('');
 	// const [parameters, setParameters] = useState(params);
+	const [sideData, setSideData] = useState(initialData);
 	const [movie, setMovie] = useState(0);
-	const [searchbox, setSearchbox] = useState('');
+	const [searchbox, setSearchbox] = useThrottle('');
 	return (
 		<div
 			className='grid'
@@ -27,12 +65,9 @@ const App = () => {
 				gridTemplateColumns: '6fr 8fr 8fr 8fr',
 				gridTemplateRows: '6fr 8fr 10fr 10fr',
 			}}>
-			<header style={{ gridColumn: '2/ span3', textAlign: 'center' }}>
-				<h1>
-					<a href='/'>Placeholder</a>
-				</h1>
-			</header>
 			<Sidebar
+				sideData={sideData}
+				setSideData={setSideData}
 				movie={movie}
 				setMovie={setMovie}
 				setSearchbox={setSearchbox}
