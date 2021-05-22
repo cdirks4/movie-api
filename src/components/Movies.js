@@ -32,10 +32,11 @@ const Movies = ({ genre, match, movie, setMovie, searchbox }) => {
 					borderRadius: '5%',
 					height: '300px',
 				}}>
-				{movie.results.map((movie) => {
+				{movie.results.map((movie, index) => {
 					return (
 						<Link to={`/${movie.id}`}>
 							<img
+								key={index}
 								className='image'
 								style={{
 									borderRadius: '5%',
