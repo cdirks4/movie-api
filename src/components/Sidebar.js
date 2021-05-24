@@ -1,30 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import MovieDetails from './MovieDetails';
-import MovieGenre from './MovieGenre';
-import Movies from './Movies';
+
 import * as _ from 'underscore';
 import * as MdIcons from 'react-icons/md';
 import * as GrIcons from 'react-icons/gr';
 import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
-const Sidebar = ({
-	sideData,
-	movie,
-	setMovie,
-	genre,
-	setGenre,
-	setSearchbox,
-	searchbox,
-}) => {
+
+/// this component renders out my nav, sidebar and takes in the search parameters for my search component
+const Sidebar = ({ sideData, setSearchbox, setGenre }) => {
 	const [search, setSearch] = useState(true);
-	const [category, setCategory] = useState(0);
-	const [submit, setSubmit] = useState(false);
 	const [sidebar, setSidebar] = useState(true);
 	const apiKey = process.env.REACT_APP_API_KEY;
-	const handleSubmit = (e) => {
-		e.preventDefault();
-	};
+	const [genreBar, setGenreBar] = useState('');
 	const showSidebar = () => setSidebar(!sidebar);
 	const throttleChange = (e) => {
 		const handleChange = () => {
@@ -33,25 +20,66 @@ const Sidebar = ({
 		_.throttle(setTimeout(setSearchbox(e.target.value), 500), 500);
 	};
 
+	useEffect(() => {
+		fetch(
+			`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`
+		)
+			.then((res) => res.json())
+			.then((res) => setGenreBar(res));
+	}, [genreBar]);
+	if (!genreBar) {
+		return null;
+	}
+	const debounce = (func) => {
+		let timer;
+		return function (...args) {
+			const context = this;
+			if (timer) clearTimeout(timer);
+			timer = setTimeout(() => {
+				timer = null;
+				func.apply(context, args);
+			}, 500);
+		};
+	};
+	const optimisedVersion = debounce();
 	return (
 		<>
 			<div className='navbar'>
 				<Link to='#' className='menu-bars'>
+					{/* {diplaying and hiding sidebar} */}
 					<FaIcons.FaBars onClick={showSidebar} />
 				</Link>
 				{/* Hamburger */}
-				<h1 style={{ color: 'white' }}>Movie Viewer</h1>
-				<div style={{ display: 'grid' }}>
+				<h1 className='logo' style={{ color: 'white' }}>
+					Movie Viewer
+				</h1>
+				<select
+					classsName='dropdown'
+					name='select'
+					id='select'
+					onChange={(e) => setGenre(e.target.value)}>
+					<option value='' default>
+						Select Genre
+					</option>
+
+					{genreBar.genres.map((genre) => {
+						return <option value={genre.id}>{genre.name}</option>;
+					})}
+				</select>
+				<div className='searchdiv' style={{ display: 'grid' }}>
 					<Link to='#' className='menu-bars'>
 						<GrIcons.GrSearch
 							onClick={() => setSearch(!search)}
+							// displaying and hiding search logo
 							className={search ? 'search active' : 'search'}
 							style={{ marginRight: '30px', marginTop: '10px', width: '60px' }}
 						/>
 					</Link>
 					<input
+						// changing state of searchbox attempting to slow down calls
 						onChange={throttleChange}
 						id='searchbox'
+						// displaing and hiding search bar opposite of logo
 						className={search ? 'search' : 'search active'}
 						style={{
 							width: '150px',
@@ -61,13 +89,16 @@ const Sidebar = ({
 						}}></input>
 				</div>
 			</div>
+			{/* side bar showing or not hamburger click */}
 			<nav className={sidebar ? 'nav-menu' : 'nav-menu active'}>
 				<ul className='nav-menu-icons'>
 					<li className='nav-bar-toggle'>
 						<Link to='#' className='menu-bars'>
+							{/* closing side bar */}
 							<MdIcons.MdExitToApp onClick={showSidebar} />
 						</Link>
 					</li>
+					{/* mapping over state holding info on list items */}
 					{sideData.map((item, index) => {
 						return (
 							<li key={index} className={item.cName}>
@@ -85,51 +116,3 @@ const Sidebar = ({
 };
 
 export default Sidebar;
-
-// <div
-// 			className='sidebar'
-// 			style={{ border: ' 2px solid black', gridRow: ' 1/ span 4' }}>
-// 			<input
-// 				onChange={throttleChange}
-// 				id='searchbox'
-// 				style={{ width: '100%', height: '30px', marginTop: '5px' }}></input>
-// 			<ul onClick={(e) => setCategory(e.target.id)}>
-// 				<Link to='/movies/popular'>
-// 					<li id='popular'>Popular Movies</li>
-// 				</Link>
-// 				<Link to={'/movies/top_rated'}>
-// 					<li id='top_rated'>Top Rated Movies</li>
-// 				</Link>
-// 				<Link to='/movies/now_playing'>
-// 					<li id='now_playing'>Now Playing!</li>
-// 				</Link>
-// 			</ul>
-
-// 			<select
-// 				name='select'
-// 				id='select'
-// 				onChange={(e) => setGenre(e.target.value)}>
-// 				<option value='' default>
-// 					Select Genre
-// 				</option>
-// 				<option value='28'>Action</option>
-// 				<option value='12'>Adventure</option>
-// 				<option value='16'>Animation</option>
-// 				<option value='35'>Comedy</option>
-// 				<option value='80'>Crime</option>
-// 				<option value='99'>Documentary</option>
-// 				<option value='18'>Drama</option>
-// 				<option value='10751'>Family</option>
-// 				<option value='14'>Fantasy</option>
-// 				<option value='36'>History</option>
-// 				<option value='27'>Horror</option>
-// 				<option value='10402'>Music</option>
-// 				<option value='9648'>Mystery</option>
-// 				<option value='10749'>Romance</option>
-// 				<option value='878'>Science Fiction</option>
-// 				<option value='10770'>TV Movie</option>
-// 				<option value='53'>Thriller</option>
-// 				<option value='10752'>War</option>
-// 				<option value='37'>Western</option>
-// 			</select>
-// 		</div>

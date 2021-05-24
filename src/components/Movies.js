@@ -5,6 +5,7 @@ const Movies = ({ genre, match, movie, setMovie, searchbox }) => {
 	const apiKey = process.env.REACT_APP_API_KEY;
 	useEffect(() => {
 		{
+			let timer = setTimeout(() => setTimeout);
 			fetch(
 				` https://api.themoviedb.org/3/movie/${match.category}?api_key=${apiKey}&language=en-US&page=${page}&with_genres=${genre}`
 			)
@@ -12,13 +13,15 @@ const Movies = ({ genre, match, movie, setMovie, searchbox }) => {
 				.then((res) => setMovie(res));
 		}
 	}, [page, match.category, genre, searchbox]);
+	///updating the component on the change of these variables
+
 	if (!movie.results) {
 		return null;
 	}
 	if (!page || page > movie.total_pages) {
 		setPage(1);
 	}
-	console.log(match);
+
 	return (
 		<div
 			style={{
@@ -32,6 +35,7 @@ const Movies = ({ genre, match, movie, setMovie, searchbox }) => {
 					borderRadius: '5%',
 					height: '300px',
 				}}>
+				{/* maping over the movies displaying the image and average on the main page */}
 				{movie.results.map((movie, index) => {
 					return (
 						<Link to={`/${movie.id}`}>
@@ -51,7 +55,7 @@ const Movies = ({ genre, match, movie, setMovie, searchbox }) => {
 				})}
 			</div>
 
-			<div style={{ gridRow: '4', gridColumn: '2' }}>
+			<div className='pages'>
 				<button onClick={() => setPage(page - 1)}>Previous Page</button>
 				<button onClick={() => setPage(page + 1)}>Next Page</button>
 				<h2>
