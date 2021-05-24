@@ -4,14 +4,17 @@ import React, { useEffect } from 'react';
 
 const MovieSearch = ({ setMovie, searchbox }) => {
 	const apiKey = process.env.REACT_APP_API_KEY;
-
 	useEffect(() => {
 		{
 			fetch(
 				`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${searchbox}&page=1`
 			)
 				.then((res) => res.json())
-				.then((res) => setMovie(res));
+				.then((res) => {
+					if (res?.results?.length) {
+						setMovie(res);
+					}
+				});
 		}
 	}, [searchbox]);
 	return <div></div>;

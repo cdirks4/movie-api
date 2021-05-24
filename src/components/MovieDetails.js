@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-
+import ReactPlayer from 'react-player';
 //this component renders out the details page on the movie once it has been clicked
 
 const MovieDetails = ({ match }) => {
 	const apiKey = process.env.REACT_APP_API_KEY;
 	const [movie, setMovie] = useState(0);
+	const [trailer, setTrailer] = useState('');
 
 	useEffect(() => {
 		{
@@ -15,8 +16,21 @@ const MovieDetails = ({ match }) => {
 				.then((res) => setMovie(res));
 		}
 	}, []);
+	useEffect(() => {
+		{
+			fetch(
+				` https://api.themoviedb.org/3/movie/${match.id}/videos?api_key=${apiKey}&language=en-US`
+			)
+				.then((res) => res.json())
+				.then((res) => setTrailer(res));
+		}
+	}, []);
+	console.log(trailer);
 	console.log(movie);
 	if (!movie) {
+		return null;
+	}
+	if (!trailer) {
 		return null;
 	}
 	return (
@@ -30,10 +44,21 @@ const MovieDetails = ({ match }) => {
 					borderRadius: '5%',
 					height: '350px',
 					width: '700px',
-					gridColumn: '1/ span 4',
+					gridColumn: '0/ span 4',
+					gridRow: '0/ span 4',
 				}}
 				src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
 			/>
+			{trailer.results.map((trailer) => {
+				return (
+					<div className='video-responsive'>
+						<ReactPlayer
+							url={`https://www.youtube.com/watch?v=${trailer.key}`}
+							controls={true}
+						/>
+					</div>
+				);
+			})}
 
 			<div>
 				<h1>{movie.original_title}</h1>

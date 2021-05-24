@@ -13,12 +13,6 @@ const Sidebar = ({ sideData, setSearchbox, setGenre }) => {
 	const apiKey = process.env.REACT_APP_API_KEY;
 	const [genreBar, setGenreBar] = useState('');
 	const showSidebar = () => setSidebar(!sidebar);
-	const throttleChange = (e) => {
-		const handleChange = () => {
-			setSearchbox(e.target.value);
-		};
-		_.throttle(setTimeout(setSearchbox(e.target.value), 500), 500);
-	};
 
 	useEffect(() => {
 		fetch(
@@ -30,20 +24,16 @@ const Sidebar = ({ sideData, setSearchbox, setGenre }) => {
 	if (!genreBar) {
 		return null;
 	}
-	const debounce = (func) => {
-		let timer;
-		return function (...args) {
-			const context = this;
-			if (timer) clearTimeout(timer);
-			timer = setTimeout(() => {
-				timer = null;
-				func.apply(context, args);
-			}, 500);
-		};
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		setSearchbox(e.target[0].value);
 	};
-	const optimisedVersion = debounce();
+	const handleChange = (e) => {
+		setSearchbox(e.target.value);
+	};
+
 	return (
-		<>
+		<div>
 			<div className='navbar'>
 				<Link to='#' className='menu-bars'>
 					{/* {diplaying and hiding sidebar} */}
@@ -57,9 +47,10 @@ const Sidebar = ({ sideData, setSearchbox, setGenre }) => {
 					classsName='dropdown'
 					name='select'
 					id='select'
+					style={{ padding: '10px 0px 0px 0px', width: '75px', height: '60px' }}
 					onChange={(e) => setGenre(e.target.value)}>
 					<option value='' default>
-						Select Genre
+						Genre
 					</option>
 
 					{genreBar.genres.map((genre) => {
@@ -75,18 +66,26 @@ const Sidebar = ({ sideData, setSearchbox, setGenre }) => {
 							style={{ marginRight: '30px', marginTop: '10px', width: '60px' }}
 						/>
 					</Link>
-					<input
-						// changing state of searchbox attempting to slow down calls
-						onChange={throttleChange}
-						id='searchbox'
-						// displaing and hiding search bar opposite of logo
-						className={search ? 'search' : 'search active'}
-						style={{
-							width: '150px',
-							height: '30px',
-							marginRight: '15px',
-							marginBottom: '15px',
-						}}></input>
+					<form onSubmit={handleSubmit}>
+						<input
+							autoComplete='off'
+							// changing state of searchbox attempting to slow down calls
+							onChange={handleChange}
+							id='searchbox'
+							// displaing and hiding search bar opposite of logo
+							className={search ? 'search' : 'search active'}
+							style={{
+								width: '150px',
+								height: '30px',
+								marginRight: '15px',
+								marginBottom: '15px',
+							}}></input>
+						{/* <button
+							className={search ? 'search' : 'search active'}
+							type='submit'>
+							Cick to Break!
+						</button> */}
+					</form>
 				</div>
 			</div>
 			{/* side bar showing or not hamburger click */}
@@ -111,7 +110,7 @@ const Sidebar = ({ sideData, setSearchbox, setGenre }) => {
 					})}
 				</ul>
 			</nav>
-		</>
+		</div>
 	);
 };
 
