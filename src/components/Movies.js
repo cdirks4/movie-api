@@ -69,6 +69,22 @@ const Movies = ({ genre, match, movie, setMovie, searchbox }) => {
 					);
 				})}
 			</div>
+			<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+				<button
+					onClick={() => {
+						setPage(page - 1);
+					}}>
+					Previous Page
+				</button>
+				Page {page} of {movie.total_pages}
+				<button
+					style={{ marginRight: '10px' }}
+					onClick={() => {
+						setPage(page + 1);
+					}}>
+					Next Page
+				</button>
+			</div>
 		</div>
 	);
 };
