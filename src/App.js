@@ -52,11 +52,10 @@ const App = () => {
 		<div
 			className='grid'
 			style={{
-				height: '100vh',
-				width: '100vw',
+				minHeight: '100vh',
+				minWidth: '100vw',
 				display: 'grid',
 				gridTemplateColumns: '6fr 8fr 8fr 8fr',
-				gridTemplateRows: '6fr 8fr 10fr 10fr',
 			}}>
 			<Sidebar
 				sideData={sideData}
