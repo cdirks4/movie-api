@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
-const MovieSearch = ({ movie, setMovie, searchbox }) => {
+// Only use of this component is calling my api with the search parameters should move
+
+const MovieSearch = ({ setMovie, searchbox }) => {
 	const apiKey = process.env.REACT_APP_API_KEY;
+
 	useEffect(() => {
 		{
 			fetch(

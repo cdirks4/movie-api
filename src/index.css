@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Shrikhand&display=swap');
+
 * {
 	box-sizing: border-box;
 }
@@ -5,12 +7,14 @@
 	background-color: grey;
 	height: 100vh;
 }
-
+.logo {
+	font-family: 'Shrikhand', cursive;
+}
 .navbar {
+	display: grid;
+	grid-template-columns: 6fr 6fr 6fr 6fr;
 	background-color: rgb(11, 2, 55);
 	height: 100px;
-	display: flex;
-	justify-content: space-between;
 	grid-column: 1 / span 4;
 	box-shadow: 0px 2px rgba(34, 34, 34, 0.6);
 }
@@ -23,7 +27,7 @@
 .nav-menu {
 	box-shadow: 2px 0px rgba(34, 34, 34, 0.6);
 	background-color: rgb(11, 2, 55);
-	width: 220px;
+	grid-column: 1;
 	height: 100%;
 	display: flex;
 	justify-content: center;
@@ -59,11 +63,11 @@
 	height: 100%;
 	display: flex;
 	align-items: center;
-	padding: 0 16px;
 	border-radius: 4px;
+	font-family: sans-serif;
 }
 .nav-text a:hover {
-	background-color: cadetblue;
+	background-color: black;
 }
 .nav-menu-icons {
 	width: 100%;

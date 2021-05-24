@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+//this component renders out the details page on the movie once it has been clicked
+
 const MovieDetails = ({ match }) => {
 	const apiKey = process.env.REACT_APP_API_KEY;
 	const [movie, setMovie] = useState(0);
@@ -44,7 +46,7 @@ const MovieDetails = ({ match }) => {
 				})}
 			</ul>
 			<div>
-				<h2>Adults only {movie.adult ? '✅' : '❌'}</h2>
+				<h2></h2>
 			</div>
 		</div>
 	);

@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import Movies from './components/Movies';
 import './index.css';
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import MovieDetails from './components/MovieDetails';
-import MovieGenre from './components/MovieGenre';
 import MovieSearch from './components/MovieSearch';
 import { useThrottle } from '@react-hook/throttle';
 
@@ -13,12 +12,6 @@ import * as GiIcons from 'react-icons/gi';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 
-// const params = [
-// 	{
-// 		genre: '',
-// 		category: '',
-// 	},
-// ];
 const initialData = [
 	{
 		title: 'Home',
@@ -51,11 +44,11 @@ const initialData = [
 ];
 const App = () => {
 	const [genre, setGenre] = useState('');
-	// const [parameters, setParameters] = useState(params);
 	const [sideData, setSideData] = useState(initialData);
 	const [movie, setMovie] = useState(0);
 	const [searchbox, setSearchbox] = useThrottle('');
 	return (
+		//main grid across the page
 		<div
 			className='grid'
 			style={{
@@ -67,12 +60,7 @@ const App = () => {
 			}}>
 			<Sidebar
 				sideData={sideData}
-				setSideData={setSideData}
-				movie={movie}
-				setMovie={setMovie}
 				setSearchbox={setSearchbox}
-				searchbox={searchbox}
-				genre={genre}
 				setGenre={setGenre}
 			/>
 			<Route
@@ -83,8 +71,6 @@ const App = () => {
 						movie={movie}
 						setMovie={setMovie}
 						searchbox={searchbox}
-						// paramaters={parameters}
-						// setParameters={setParameters}
 						match={routerProps.match.params}
 					/>
 				)}
@@ -93,14 +79,10 @@ const App = () => {
 				exact
 				path='/:id'
 				render={(routerProps) => (
-					<MovieDetails
-						match={routerProps.match.params}
-						movie={movie}
-						setMovie={setMovie}
-					/>
+					<MovieDetails match={routerProps.match.params} />
 				)}
 			/>
-			<MovieSearch movie={movie} setMovie={setMovie} searchbox={searchbox} />
+			<MovieSearch setMovie={setMovie} searchbox={searchbox} />
 		</div>
 	);
 };
