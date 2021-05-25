@@ -12,8 +12,7 @@
 body {
 	margin: 0px;
 }
-.image {
-}
+
 .Card {
 	display: grid;
 	border: solid rgb(11, 2, 55) 5px;
@@ -55,7 +54,12 @@ body {
 .search.active {
 	opacity: 1;
 }
-
+.arrow {
+	opacity: 0;
+}
+.arrow.active {
+	opacity: 1;
+}
 .nav-menu.active {
 	left: 0;
 	transition: 350ms;
