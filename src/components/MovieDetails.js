@@ -25,8 +25,7 @@ const MovieDetails = ({ match }) => {
 				.then((res) => setTrailer(res));
 		}
 	}, []);
-	console.log(trailer);
-	console.log(movie);
+
 	if (!movie) {
 		return null;
 	}

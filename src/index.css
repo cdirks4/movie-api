@@ -97,3 +97,6 @@ body {
 span {
 	margin-left: 16px;
 }
+.cardgrid a {
+	text-decoration: none;
+}
