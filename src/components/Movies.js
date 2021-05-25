@@ -50,7 +50,7 @@ const Movies = ({ genre, match, movie, setMovie, searchbox }) => {
 								/>
 								<div
 									style={{
-										className: 'rating container',
+										className: 'ratingcontainer',
 										display: 'grid',
 										backgroundColor: 'rgb(11, 2, 55)',
 										height: '75px',
@@ -59,7 +59,8 @@ const Movies = ({ genre, match, movie, setMovie, searchbox }) => {
 										style={{
 											width: '44px',
 											border: '5px solid white',
-											backgroundColor: 'white;',
+											backgroundColor: 'white',
+											textAlign: 'center',
 										}}>
 										{movie.vote_average}
 									</h2>

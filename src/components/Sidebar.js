@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import * as _ from 'underscore';
 import * as MdIcons from 'react-icons/md';
-import * as GrIcons from 'react-icons/gr';
+import * as FcIcons from 'react-icons/fc';
 import * as FaIcons from 'react-icons/fa';
 
 /// this component renders out my nav, sidebar and takes in the search parameters for my search component
@@ -43,6 +43,7 @@ const Sidebar = ({ sideData, setSearchbox, setGenre }) => {
 				<h1 className='logo' style={{ color: 'white' }}>
 					Movie Viewer
 				</h1>
+
 				<select
 					classsName='dropdown'
 					name='select'
@@ -59,11 +60,15 @@ const Sidebar = ({ sideData, setSearchbox, setGenre }) => {
 				</select>
 				<div className='searchdiv' style={{ display: 'grid' }}>
 					<Link to='#' className='menu-bars'>
-						<GrIcons.GrSearch
+						<FcIcons.FcSearch
 							onClick={() => setSearch(!search)}
 							// displaying and hiding search logo
 							className={search ? 'search active' : 'search'}
-							style={{ marginRight: '30px', marginTop: '10px', width: '60px' }}
+							style={{
+								marginRight: '30px',
+								marginTop: '10px',
+								width: '60px',
+							}}
 						/>
 					</Link>
 					<form onSubmit={handleSubmit}>

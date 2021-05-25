@@ -5,7 +5,7 @@ import './index.css';
 import { Route } from 'react-router-dom';
 import MovieDetails from './components/MovieDetails';
 import MovieSearch from './components/MovieSearch';
-import { useThrottle } from '@react-hook/throttle';
+import Home from './components/Home';
 
 import * as FiIcons from 'react-icons/fi';
 import * as GiIcons from 'react-icons/gi';
@@ -46,7 +46,7 @@ const App = () => {
 	const [genre, setGenre] = useState('');
 	const [sideData, setSideData] = useState(initialData);
 	const [movie, setMovie] = useState(0);
-	const [searchbox, setSearchbox] = useThrottle('');
+	const [searchbox, setSearchbox] = useState('');
 	return (
 		//main grid across the page
 		<div
@@ -62,6 +62,7 @@ const App = () => {
 				setSearchbox={setSearchbox}
 				setGenre={setGenre}
 			/>
+			<Route exact path='/' component={Home} />
 			<Route
 				path='/movies/:category'
 				render={(routerProps) => (
