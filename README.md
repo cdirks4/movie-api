@@ -16,32 +16,32 @@ https://www.themoviedb.org/settings/api
 
 ![Screen Shot 2021-05-19 at 11 48 56 AM](https://media.git.generalassemb.ly/user/35112/files/4198ba00-b898-11eb-811b-a33e919d0cd4)
 
-I think I will end up with at least one or two more just unsure at the moment.
+I think I will end up with at least one or two more just unsure at the moment. // ended up with 5 child zcomponents and an app component
 
 ## User Stories
 
-- as a user Id like to find new popular Movies
-- as a user Id like to find movies in the same genre
-- as a user Id like a well organized site where I wont have difficulties navigating it
+- as a user Id like to find new popular Movies // created a tab on side bar for this
+- as a user Id like to find movies in the same genre // created genre drop down
+- as a user Id like a well organized site where I wont have difficulties navigating it // I feel as though the site is easy to navigate and user friendly
 
 ### MVP Goals
 
-- Able to display movies and titles
-- Able to pull details on a specific movie cast description etc
+- Able to display movies and titles // multiple pages displaying movies
+- Able to pull details on a specific movie cast description etc //Was able to get details on the movie but not cast.
 
 ### Stretch Goals
 
 Bronze:
 
-- search bar
-- clickable category links in side bar
+- search bar // created a search bar to search through movies
+- clickable category links in side bar // created a side bar with routes
 
   Silver:
 
-- bundling movies by category
-- improving style to be more dynamic maybe an animation when a cover shows up or slide show of movies on front page
-- giving producers a page with movies they have produced
+- bundling movies by category // created a genre drop down
+- improving style to be more dynamic maybe an animation when a cover shows up or slide show of movies on front page // did not get as far as making a slide show but the page is reactive how I was hoping
+- giving producers a page with movies they have produced // did not get to this
 
   Gold:
 
-- try pulling trailers from youtube api
+- try pulling trailers from youtube api // I did not end up needing to use the youtube api as they were already integrated into the TMDB api
