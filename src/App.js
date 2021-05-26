@@ -52,7 +52,7 @@ const App = () => {
 		<div
 			className='grid'
 			style={{
-				minHeight: '100vh',
+				minHeight: '100vh', //future lessen the amounts of grids
 				minWidth: '100vw',
 				display: 'grid',
 				gridTemplateColumns: '6fr 8fr 8fr 8fr',

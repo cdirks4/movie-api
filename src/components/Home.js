@@ -24,7 +24,7 @@ const Home = () => {
 			style={{
 				width: '100vw',
 				height: '100vh',
-				backgroundColor: 'grey',
+				backgroundColor: 'grey', ///less inline move into component specific css
 				display: 'grid',
 				gridTemplateRows: '1fr 2fr 1fr 6fr 1.5fr',
 				gridTemplateColumns: '1fr 4fr 8fr 1fr',
@@ -69,12 +69,12 @@ const Home = () => {
 							</div>
 						);
 				  })}
-			<div
+			<footer
 				style={{
 					gridRow: '5',
 					gridColumn: '1/ span 4',
 					backgroundColor: 'rgb(11, 2, 55)',
-				}}></div>
+				}}></footer>
 		</div>
 	);
 };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FiRepeat } from 'react-icons/fi';
+
 import { Link } from 'react-router-dom';
 const Movies = ({ genre, match, movie, setMovie, searchbox }) => {
 	const [page, setPage] = useState(1);
@@ -23,7 +23,7 @@ const Movies = ({ genre, match, movie, setMovie, searchbox }) => {
 	}
 
 	return (
-		<div
+		<main
 			style={{
 				gridColumn: '2/ span 4',
 				marginTop: '100px',
@@ -35,13 +35,13 @@ const Movies = ({ genre, match, movie, setMovie, searchbox }) => {
 					gridTemplateColumns: 'repeat(auto-fill,minmax(200px,1fr))',
 					borderRadius: '5%',
 				}}>
-				{/* maping over the movies displaying the image and average on the main page */}
-				{movie.results.map((movie, index) => {
+				{/* maping over the movies displaying the image and average on the main page Card in its own component and pass movie too it */}
+				{movie.results.map((movie) => {
 					return (
 						<Link to={`/${movie.id}`}>
 							<div className='Card'>
 								<img
-									key={index}
+									key={movie.id}
 									className='image'
 									style={{
 										height: '300px',
@@ -87,7 +87,7 @@ const Movies = ({ genre, match, movie, setMovie, searchbox }) => {
 					Next Page
 				</button>
 			</div>
-		</div>
+		</main>
 	);
 };
 

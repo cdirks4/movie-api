@@ -33,7 +33,7 @@ const Sidebar = ({ sideData, setSearchbox, setGenre }) => {
 	};
 
 	return (
-		<div>
+		<main>
 			<div className='navbar'>
 				<Link to='#' className='menu-bars'>
 					{/* {diplaying and hiding sidebar} */}
@@ -110,7 +110,7 @@ const Sidebar = ({ sideData, setSearchbox, setGenre }) => {
 					})}
 				</ul>
 			</nav>
-		</div>
+		</main>
 	);
 };
 

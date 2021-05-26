@@ -58,7 +58,7 @@ h6 {
 	display: flex;
 	justify-content: center;
 	position: fixed;
-	left: -100%;
+	left: 100%;
 	transition: 850ms;
 	z-index: 1;
 }

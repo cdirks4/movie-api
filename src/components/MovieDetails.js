@@ -18,22 +18,17 @@ const MovieDetails = ({ match }) => {
 		setCurrent(current === 0 ? trailer.results.length - 1 : current - 1);
 	};
 	useEffect(() => {
-		{
-			fetch(
-				` https://api.themoviedb.org/3/movie/${match.id}?api_key=${apiKey}&language=en-US&page=1`
-			)
-				.then((res) => res.json())
-				.then((res) => setMovie(res));
-		}
-	}, []);
-	useEffect(() => {
-		{
-			fetch(
-				` https://api.themoviedb.org/3/movie/${match.id}/videos?api_key=${apiKey}&language=en-US`
-			)
-				.then((res) => res.json())
-				.then((res) => setTrailer(res));
-		}
+		fetch(
+			` https://api.themoviedb.org/3/movie/${match.id}?api_key=${apiKey}&language=en-US&page=1`
+		)
+			.then((res) => res.json())
+			.then((res) => setMovie(res));
+
+		fetch(
+			` https://api.themoviedb.org/3/movie/${match.id}/videos?api_key=${apiKey}&language=en-US`
+		)
+			.then((res) => res.json())
+			.then((res) => setTrailer(res));
 	}, []);
 
 	if (!movie) {
@@ -43,7 +38,7 @@ const MovieDetails = ({ match }) => {
 		return null;
 	}
 	return (
-		<div
+		<main
 			style={{
 				gridColumn: '2/ span 4',
 			}}>
@@ -74,7 +69,7 @@ const MovieDetails = ({ match }) => {
 					onClick={lastTrailer}
 				/>
 				<FaIcons.FaArrowAltCircleRight
-					className={trailer.results.key ? 'arrow' : 'arrow active'}
+					className={trailer.results.key ? 'arrow' : 'arrow-active'}
 					style={{ gridRow: '2', gridColumn: '3' }}
 					onClick={nextTrailer}
 				/>
@@ -104,7 +99,7 @@ const MovieDetails = ({ match }) => {
 				})}
 			</ul>
 			<div></div>
-		</div>
+		</main>
 	);
 };
 
