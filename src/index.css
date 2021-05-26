@@ -9,10 +9,23 @@
 .logo {
 	font-family: 'Shrikhand', cursive;
 }
+
 body {
 	margin: 0px;
+	font-family: 'Quicksand', sans-serif;
+	font-weight: 300;
 }
-
+button {
+	background-color: darkgrey;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: 500;
+}
 .Card {
 	display: grid;
 	border: solid rgb(11, 2, 55) 5px;
@@ -47,6 +60,7 @@ body {
 	position: fixed;
 	left: -100%;
 	transition: 850ms;
+	z-index: 1;
 }
 .search {
 	opacity: 0;
@@ -58,6 +72,8 @@ body {
 	opacity: 0;
 }
 .arrow.active {
+	height: 50px;
+	width: 50px;
 	opacity: 1;
 }
 .nav-menu.active {
@@ -103,4 +119,5 @@ span {
 }
 .cardgrid a {
 	text-decoration: none;
+	color: black;
 }

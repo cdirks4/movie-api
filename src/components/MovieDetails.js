@@ -9,9 +9,11 @@ const MovieDetails = ({ match }) => {
 	const [trailer, setTrailer] = useState('');
 	const [current, setCurrent] = useState(0);
 
+	// if current is = trailer length -1 set to 0 else move forward on slide
 	const nextTrailer = () => {
 		setCurrent(current === trailer.results.length - 1 ? 0 : current + 1);
 	};
+	// if current is =  0 (first image) set it to last
 	const lastTrailer = () => {
 		setCurrent(current === 0 ? trailer.results.length - 1 : current - 1);
 	};
@@ -48,12 +50,14 @@ const MovieDetails = ({ match }) => {
 			<img
 				className='image'
 				style={{
+					marginTop: '70px',
 					borderRadius: '5%',
 					height: '350px',
 					width: '700px',
 					gridColumn: '0/ span 4',
 					gridRow: '0/ span 4',
 				}}
+				alt='an image from the movie'
 				src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
 			/>
 			<div
@@ -74,13 +78,15 @@ const MovieDetails = ({ match }) => {
 					style={{ gridRow: '2', gridColumn: '3' }}
 					onClick={nextTrailer}
 				/>
+
+				{/* mapping over trailers calling the index we want with current and displaying it with reactplayer */}
 				{trailer.results.map((trailer, index) => {
 					return (
 						<div style={{ gridRow: '1/ span 3', gridColumn: ' 2' }}>
 							{index === current && (
 								<ReactPlayer
 									url={`https://www.youtube.com/watch?v=${trailer.key}`}
-									controls={true}
+									alt={`the trailer or blooper for ${movie.original_title}`}
 								/>
 							)}
 						</div>
@@ -92,9 +98,9 @@ const MovieDetails = ({ match }) => {
 				<h2>Budget: ${movie.budget}</h2>
 			</div>
 			<ul>
-				Genre:
+				Genres:
 				{movie.genres.map((genre) => {
-					return <li>{genre.name}</li>;
+					return <li style={{ listStyleType: 'none' }}>{genre.name}</li>;
 				})}
 			</ul>
 			<div></div>
