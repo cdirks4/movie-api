@@ -64,7 +64,7 @@ const Home = () => {
 								className='video-responsive'>
 								<ReactPlayer
 									url={`https://www.youtube.com/watch?v=${trailer.key}`}
-									controls={true}
+									alt='a random movie trailer'
 								/>
 							</div>
 						);

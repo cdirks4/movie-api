@@ -85,11 +85,6 @@ const Sidebar = ({ sideData, setSearchbox, setGenre }) => {
 								marginRight: '15px',
 								marginBottom: '15px',
 							}}></input>
-						{/* <button
-							className={search ? 'search' : 'search active'}
-							type='submit'>
-							Cick to Break!
-						</button> */}
 					</form>
 				</div>
 			</div>

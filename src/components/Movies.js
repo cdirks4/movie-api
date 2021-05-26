@@ -46,6 +46,7 @@ const Movies = ({ genre, match, movie, setMovie, searchbox }) => {
 									style={{
 										height: '300px',
 									}}
+									alt={`the poster for${movie.original_title}`}
 									src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
 								/>
 								<div
