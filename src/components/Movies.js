@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FiRepeat } from 'react-icons/fi';
+
 import { Link } from 'react-router-dom';
 const Movies = ({ genre, match, movie, setMovie, searchbox }) => {
 	const [page, setPage] = useState(1);

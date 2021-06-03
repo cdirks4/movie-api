@@ -20,7 +20,7 @@ const Sidebar = ({ sideData, setSearchbox, setGenre }) => {
 		)
 			.then((res) => res.json())
 			.then((res) => setGenreBar(res));
-	}, [genreBar]);
+	}, []);
 	if (!genreBar) {
 		return null;
 	}
