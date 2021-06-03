@@ -24,15 +24,13 @@ const MovieDetails = ({ match }) => {
 			)
 				.then((res) => res.json())
 				.then((res) => setMovie(res));
-		}
-	}, []);
-	useEffect(() => {
-		{
+
 			fetch(
 				` https://api.themoviedb.org/3/movie/${match.id}/videos?api_key=${apiKey}&language=en-US`
 			)
 				.then((res) => res.json())
 				.then((res) => setTrailer(res));
+			console.log(trailer.results);
 		}
 	}, []);
 
@@ -69,12 +67,12 @@ const MovieDetails = ({ match }) => {
 					alignItems: 'center',
 				}}>
 				<FaIcons.FaArrowAltCircleLeft
-					className={trailer.results.key ? 'arrow' : 'arrow active'}
+					className={trailer.results.length ? 'arrow active' : 'arrow'}
 					style={{ gridRow: '2', gridColumn: '1' }}
 					onClick={lastTrailer}
 				/>
 				<FaIcons.FaArrowAltCircleRight
-					className={trailer.results.key ? 'arrow' : 'arrow active'}
+					className={trailer.results.length ? 'arrow active' : 'arrow'}
 					style={{ gridRow: '2', gridColumn: '3' }}
 					onClick={nextTrailer}
 				/>
@@ -94,15 +92,15 @@ const MovieDetails = ({ match }) => {
 				})}
 			</div>
 			<div>
-				<h1>{movie.original_title}</h1>
-				<h2>Budget: ${movie.budget}</h2>
+				<h1 className='title'>{movie.original_title}</h1>
+				{/* <h2>Budget: ${movie.budget}</h2> */}
 			</div>
-			<ul>
+			{/* <ul>
 				Genres:
 				{movie.genres.map((genre) => {
 					return <li style={{ listStyleType: 'none' }}>{genre.name}</li>;
 				})}
-			</ul>
+			</ul> */}
 			<div></div>
 		</div>
 	);
